@@ -17,8 +17,7 @@
       </div>
       <div class="menu-toggle" id="menuToggle">
         <img src="menu-icon.png" alt="Menu Icon" class="menu-icon"> <!-- Replace hamburger icon with phosphorus image -->
-<!--         &#9776; 
- -->      </div>
+     </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#destinations">Destinations</a></li>
@@ -27,6 +26,12 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <script>
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active'); // Toggle the active class to show/hide the menu
+    });
+    </script>
    
 
     <div class="carousel">
