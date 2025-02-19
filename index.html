@@ -26,53 +26,77 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    
-    <div class="slideshow-container">
-      <!-- Slide 1 -->
-      <div class="slide fade">
-        <img src="IMG_2602.jpeg" alt="Beach Vacation">
-        <div class="caption">Welcome</div>
+   
+
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="image_1.jpeg" alt="Beach Vacation">
+        <img src="image_2.jpeg" alt="Mountain Getaway">
+        <img src="image_3.jpeg" alt="City Adventure">
+        <img src="image_4.jpeg" alt="Nature Escape">
+        <img src="image_5.jpeg" alt="Image 5">
+        <img src="image_6.jpeg" alt="image 6">
+        <img src="image_7.jpeg" alt="image 7">
+        <img src="image_8.jpeg" alt="image 8">
+        <img src="image_9.jpeg" alt="image 9">
       </div>
-  
-      <!-- Slide 2 -->
-      <div class="slide fade">
-        <img src="IMG_2762.jpeg" alt="Mountain Getaway">
-        <div class="caption">To</div>
-      </div>
-  
-      <!-- Slide 3 -->
-      <div class="slide fade">
-        <img src="IMG_2928.jpeg" alt="City Adventure">
-        <div class="caption">VacaFelizz</div>
-      </div>
-  
-      <!-- Navigation Arrows -->
-      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      <!-- Add navigation arrows -->
+      <button class="prev-arrow" id="prev">
+        <img src="caret-left.png" alt="Previous">
+      </button>
+      
+      <button class="next-arrow" id="next">
+        <img src="caret-right.png" alt="Next">
+      </button>
     </div>
+    
     <script>
-      let slideIndex = 0;
+    document.addEventListener("DOMContentLoaded", function () {
+      const track = document.querySelector(".carousel-track");
+      const images = Array.from(track.children);
+      const prevButton = document.getElementById("prev");
+      const nextButton = document.getElementById("next");
+
+      images.forEach((img) => {
+      const clone = img.cloneNode(true);
+      track.appendChild(clone);
+    });
     
-      function showSlides() {
-        const slides = document.querySelectorAll('.slide');
-        slides.forEach((slide, index) => {
-          slide.style.display = "none";
-        });
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1; }
-        slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 4000); // Change slide every 4 seconds
+    let speed = 2.0;
+    let position = 0;
+    let imageWidth = images[0].clientWidth; // Get width of the images
+
+    function moveCarousel() {
+      position -= speed;
+      if (position <= -track.scrollWidth / 2) {
+        position = 0;
       }
-    
-      function changeSlide(direction) {
-        const slides = document.querySelectorAll('.slide');
-        slides[slideIndex - 1].style.display = "none";
-        slideIndex += direction;
-        if (slideIndex < 1) { slideIndex = slides.length; }
-        if (slideIndex > slides.length) { slideIndex = 1; }
-        slides[slideIndex - 1].style.display = "block";
+      track.style.transform = `translateX(${position}px)`;
+      requestAnimationFrame(moveCarousel);
+    }
+
+    moveCarousel(); // Start automatic scrolling
+
+    // Move to the next image
+    nextButton.addEventListener("click", () => {
+      position -= imageWidth;
+      if (position <= -track.scrollWidth / 2) {
+        position = 0;
       }
-    
+      track.style.transform = `translateX(${position}px)`;
+    });
+
+    // Move to the previous image
+    prevButton.addEventListener("click", () => {
+      position += imageWidth;
+      if (position > 0) {
+        position = -track.scrollWidth / 2;
+      }
+      track.style.transform = `translateX(${position}px)`;
+    });
+  });
+
+       
       // Start the slideshow
       showSlides();
 
@@ -98,7 +122,7 @@
       <h2>Our Top Destinations</h2>
       <div class="card-container">
         <div class="card">
-          <img src="IMG_2602.jpeg" alt="Beach" />
+          <img src="image_1.jpeg" alt="Beach" />
           <h3>Beach Paradise</h3>
           <div class="package-price">
             $579 per person
@@ -106,7 +130,7 @@
           <p>Relax on pristine beaches with crystal-clear waters.</p>
         </div>
         <div class="card">
-          <img src="IMG_2762.jpeg" alt="Mountains" />
+          <img src="image_2.jpeg" alt="Mountains" />
           <h3>Mountain Getaway</h3>
           <div class="package-price">
             $800 per person
@@ -115,7 +139,7 @@
             Enjoy a luxurious stay at our beach resort with stunning ocean views and top-notch amenities.
            </div>        </div>
         <div class="card">
-          <img src="IMG_2928.jpeg" alt="City" />
+          <img src="image_3.jpeg" alt="City" />
           <h3>City Adventures</h3>
           <div class="package-price">
             $700 per person
@@ -129,7 +153,7 @@
       <h2>What Our Clients Say</h2>
       <div class="testimonial-container">
         <div class="testimonial">
-          <p>"Vacation Bliss made our dream trip a reality! Highly recommend."</p>
+          <p>"Vaca Felizz made our dream trip a reality! Highly recommend."</p>
           <span>- Alex D.</span>
         </div>
         <div class="testimonial">

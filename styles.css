@@ -131,27 +131,6 @@ body {
   }
 }
 
-
-
-
-/* Slideshow Container */
-.slideshow-container {
-  position: absolute;
-  top: 0; /* Push below the navbar */
-  left: 0;
-  width: 100%;
-  /*height: calc(100vh - 60px); /* Full height minus navbar */
-  height: 100%;
-  overflow: hidden;
-}
-
-
-.slide img {
-  width: 100%;/*calc(100vh - 60px); fits full pic */
-  height: calc(100vh - 60px); /* 100% if you want all */
-  object-fit: cover;
-}
-
 /* Captions */
 /* Captions Centered in the Middle of the Slide */
 .caption {
@@ -169,48 +148,57 @@ body {
 }
 
 
-/* Arrows */
-.prev, .next {
+
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 0;
+  will-change: transform;
+  white-space: nowrap;
+}
+
+
+.carousel-track img {
+  max-width: 100%;
+  max-height: 100vh;
+  height: auto;
+  width: auto;
+  flex-shrink: 0;
+}
+.prev-arrow, .next-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem;
-  border-radius: 50%;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  user-select: none;
+  z-index: 10;
+  padding: 5px; /* Optional spacing */
 }
 
-.prev:hover, .next:hover {
-  background: rgba(0, 0, 0, 0.8);
+.prev-arrow {
+  left: 10px;
 }
 
-.prev {
-  left: 20px;
+.next-arrow {
+  right: 10px;
 }
 
-.next {
-  right: 20px;
+.prev-arrow img, .next-arrow img {
+  width: 40px;  /* Adjust as needed */
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)); /* Optional shadow */
 }
-
-/* Fade Animation */
-.fade {
-  animation: fade 3.2s ease-in-out;
-}
-
-@keyframes fade {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
-}
-
-
-
-
-
-
-
 
 
 .hero {
