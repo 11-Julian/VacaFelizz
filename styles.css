@@ -83,6 +83,8 @@ body {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem; 
+  height: 70px; /* adjust as needed */
+
 }
 
 .nav-links {
@@ -265,7 +267,7 @@ body {
 .hero {
   position: relative;
   height: 100vh;
-  margin-top: 60px; /* Add margin to push the hero content below the navbar */
+  margin-top: 70px;
 
   display: flex;
   flex-direction: column;
@@ -300,7 +302,7 @@ body {
 @media (max-width: 768px) {
   .hero {
     height: auto; /* Let the container size to its content */
-    margin-top: 60px; /* Ensure it’s pushed below the fixed nav bar */
+    margin-top: 70px; /* Ensure it’s pushed below the fixed nav bar */
   }
 }
 
