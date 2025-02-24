@@ -181,6 +181,8 @@ body {
 
 
 .carousel-track img {
+  width: 100vw; /* Ensures each image spans the full viewport width */
+
   max-width: 100%;
   max-height: 100vh;
   height: auto;
@@ -192,11 +194,15 @@ body {
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
-  border: none;
+  border: none; 
   cursor: pointer;
   z-index: 10;
-  padding: 5px; /* Optional spacing */
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;    /* Adjust as needed */
+  height: 40px;
+ }
 
 .prev-arrow {
   left: 10px;
@@ -207,20 +213,41 @@ body {
 }
 
 .prev-arrow img, .next-arrow img {
-  width: 40px;  /* Adjust as needed */
+  display: block;
+  width: 100%;  /* Adjust as needed */
   height: auto;
   filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)); /* Optional shadow */
 }
+@media (max-width: 768px) {
+  .prev-arrow {
+    left: 5px; /* Reduced left offset on smaller screens */
+  }
+  .next-arrow {
+    right: 5px; /* Reduced right offset on smaller screens */
+  }
+}
+
+.transition {
+  transition: transform 0.5s ease;
+}
+
 
 @media (max-width: 768px) {
   .carousel {
     padding: 0; /* Remove padding on mobile */
     margin: 0; /* Remove margin on mobile */
+    min-height: 50vh; /* Adjust based on your design needs */
+
   }
 
+  /* .carousel-track img {
+    width: 100%; 
+    height: auto; 
+  } */
+
   .carousel-track img {
-    width: 100%; /* Make images take full width */
-    height: auto; /* Maintain aspect ratio */
+    max-height: none; /* Allow the image height to adjust naturally */
+    object-fit: cover; /* or use 'contain' if you prefer the whole image visible */
   }
 
   .prev-arrow, .next-arrow {
@@ -240,8 +267,9 @@ body {
   align-items: center;
   text-align: center;
   color: white;
-  padding: 0 2rem;
-}
+/*   padding: 0 2rem;
+ */}
+
 
 /*
 .hero {

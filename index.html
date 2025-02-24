@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"><body>
-  <header class="hero">
+  </head>
+  <body>
+    <header class="hero">
     <nav class="navbar">
       <div class="logo-container">
         <img src="vacafeliz-logo.jpg" alt="Company Logo" class="logo-image">
@@ -56,7 +58,7 @@
       </button>
     </div>
     
-    <script>
+    <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       const track = document.querySelector(".carousel-track");
       const images = Array.from(track.children);
@@ -110,7 +112,83 @@
         const navLinks = document.getElementById('navLinks');
         navLinks.classList.toggle('active'); // Toggle the 'active' class to show/hide the menu
       });
-    </script>
+    </script> -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const track = document.querySelector(".carousel-track");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+      
+        // Clone images for continuous scrolling
+        const images = Array.from(track.children);
+        images.forEach((img) => {
+          const clone = img.cloneNode(true);
+          track.appendChild(clone);
+        });
+      
+        let imageWidth = 0;
+        function updateImageWidth() {
+          imageWidth = track.querySelector("img").clientWidth;
+        }
+        window.addEventListener("load", updateImageWidth);
+        window.addEventListener("resize", updateImageWidth);
+      
+        let speed = 2.0;
+        let position = 0;
+        let autoScrollId;
+      
+        // Auto-scroll function
+        function autoScroll() {
+          position -= speed;
+          if (position <= -track.scrollWidth / 2) {
+            position = 0;
+          }
+          track.style.transform = `translateX(${position}px)`;
+          autoScrollId = requestAnimationFrame(autoScroll);
+        }
+      
+        // Start auto-scrolling
+        autoScroll();
+      
+        // Helper function to resume auto-scrolling after a delay
+        function resumeAutoScroll() {
+          // Slight delay to let the browser settle after the transition
+          setTimeout(() => {
+            track.style.transition = "none";
+            autoScroll();
+          }, 100); // you can adjust this delay as needed
+        }
+      
+        // Next arrow click handler
+        nextButton.addEventListener("click", () => {
+          // Pause auto-scroll
+          cancelAnimationFrame(autoScrollId);
+          // Enable smooth transition
+          track.style.transition = "transform 0.5s ease";
+          position -= imageWidth;
+          if (position <= -track.scrollWidth / 2) {
+            position = 0;
+          }
+          track.style.transform = `translateX(${position}px)`;
+          setTimeout(resumeAutoScroll, 500);
+        });
+      
+        // Previous arrow click handler
+        prevButton.addEventListener("click", () => {
+          cancelAnimationFrame(autoScrollId);
+          track.style.transition = "transform 0.5s ease";
+          position += imageWidth;
+          if (position > 0) {
+            position = -track.scrollWidth / 2;
+          }
+          track.style.transform = `translateX(${position}px)`;
+          setTimeout(resumeAutoScroll, 500);
+        });
+      });
+      </script>
+      
+      
     
   </header>
 
