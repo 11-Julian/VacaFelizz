@@ -17,9 +17,15 @@ font-family: "Petit Formal Script", cursive;
 font-weight: 600;}
 
 body {
-  margin-top: 80px; /* Add space below the fixed navbar to prevent overlapping content */
+  margin-top: 70px; 
   color: #333333; /* Dark gray for readability */
 }
+@media (max-width: 768px) {
+  body {
+    margin-top: 60px; /* Adjust to the actual nav bar height */
+  }
+}
+
 
 .logo {
   font-size: 1.5rem;
@@ -219,11 +225,11 @@ body {
   filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5)); /* Optional shadow */
 }
 @media (max-width: 768px) {
-  .prev-arrow {
-    left: 5px; /* Reduced left offset on smaller screens */
-  }
-  .next-arrow {
-    right: 5px; /* Reduced right offset on smaller screens */
+  .prev-arrow, .next-arrow {
+    width: 50px;    /* Increase size as needed */
+    height: 50px;
+    min-width: 50px; /* Ensure they don't shrink below this size */
+    min-height: 50px;
   }
 }
 
@@ -236,7 +242,7 @@ body {
   .carousel {
     padding: 0; /* Remove padding on mobile */
     margin: 0; /* Remove margin on mobile */
-    min-height: 50vh; /* Adjust based on your design needs */
+    min-height: auto; /* Adjust based on your design needs */
 
   }
 
@@ -290,6 +296,14 @@ body {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto; /* Let the container size to its content */
+    margin-top: 60px; /* Ensure it’s pushed below the fixed nav bar */
+  }
+}
+
 
 .btn-primary {
   background: #007bff;
